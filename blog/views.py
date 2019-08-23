@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import Blog
 
 
 def home(request):
@@ -6,3 +7,11 @@ def home(request):
 
 def about(request):
     return render(request, 'about.html')
+
+def myblog(request):
+    blog = Blog.objects.get(user=request.user)
+    context = {
+        'blog': blog,
+    }
+
+    return render(request, 'blog.html', context)
