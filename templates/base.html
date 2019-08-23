@@ -4,10 +4,10 @@
     <h1> Umblr </h1>
 </head>
 <body>
-    <li> Home </li>
-    <li> About </li>
-    <li> Login </li>
-    <li> Sign up </li>
+    <li><a href= "{% url 'home' %}"> Home </a></li>
+    <li><a href= "{% url 'about' %}"> About </li>
+    <li><a href= "{% url 'login' %}"> Login </a></li>
+    <li><a href= "{% url 'signup' %}"> Sign up </a></li>
 </body>
 <main>
     {% block content %}
