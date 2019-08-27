@@ -13,9 +13,11 @@ class Blog(models.Model):
     def __str__(self):
         return f"{self.blogTitle}"
 
+
 class Post(models.Model):
     postTitle = models.CharField(max_length=200, blank=False)
     postText = models.CharField(max_length=1000, blank=True)
+    postImage = models.ImageField(default='default.jpg', upload_to='blogImages')
     blog = models.ForeignKey(
         Blog, on_delete=models.CASCADE, blank=True, null=True
     )

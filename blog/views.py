@@ -43,7 +43,7 @@ def create_blog(request):
     blog = None
     form_class = BlogCreateForm
     if request.method == 'POST':
-        form = form_class(request.POST, instance=blog)
+        form = form_class(request.POST, request.FILES, instance=blog)
         if form.is_valid():
             blog = form.save(commit=False)
             blog.user = request.user
@@ -62,7 +62,7 @@ def edit_blog(request, id):
     blog = Blog.objects.get(id=id)
     form_class = BlogCreateForm
     if request.method == "POST":
-        form = form_class(request.POST, instance=blog)
+        form = form_class(request.POST, request.FILES, instance=blog)
         if form.is_valid():
             form.save()
             return redirect('blog', id=blog.id)
@@ -79,7 +79,7 @@ def create_post(request):
     print('hi')
     form_class = PostCreateForm
     if request.method == "POST":
-        form = form_class(request.POST)
+        form = form_class(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             my_blog = Blog.objects.get(user=request.user)
@@ -115,7 +115,7 @@ def edit_post(request, id):
     post = Post.objects.get(id=id)
     form_class = PostCreateForm
     if request.method == 'POST':
-        form = form_class(request.POST, instance=post)
+        form = form_class(request.POST, request.FILES, instance=post)
         if form.is_valid():
             form.save()
             return redirect('myblog')
@@ -133,7 +133,7 @@ def search(request):
         query = request.GET.get('q')
         submitbutton = request.GET.get('submit')
         if query is not None:
-            lookups = Q(title_icontains=query) | Q(post_icontains=query)
+            lookups = Q(postTitle__icontains=query) | Q(postText__icontains=query)
             results = Post.objects.filter(lookups).distinct()
             context = {
                 'results': results,

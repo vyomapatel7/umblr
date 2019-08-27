@@ -12,6 +12,7 @@
     {% for post in post %}
         <h3><a href="{% url 'post' id=post.id %}"> {{ post.postTitle }} </a></h3>
         <p> {{ post.postText }} </p>
+        <p> <img src="{{ post.postImage.url }}" style="width:100px;"/></p>
         {% if request.user == blog.user %}
             <p><a href= "{% url 'delete_post' id=post.id%}"> Delete Post </a></p>
             <p><a href= "{% url 'edit_post' id=post.id %}"> Edit Post </a></p>

@@ -5,4 +5,20 @@
     <input type="text" name="q" value="{{request.GET.q}}" placeholder="type here">
     <input type="submit" name="submit" value="Search">
     </form>
-{% endblock %}
+
+    {% if submitbutton == 'Search' and request.GET.q != '' %}
+    {% if results %}
+        <h1>Results for <b>{{ request.GET.q }}</b></h1>
+        <br/><br/>
+        {% for result in results %}
+
+            <a href="{% url 'post' id=result.id %}"> {{result.postTitle}}  </a>
+            <br/>
+
+        {% endfor %}
+    {% else %}
+        No search results for this query
+    {% endif %}
+{% endif %}
+
+{% endblock content %}
