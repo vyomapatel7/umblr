@@ -2,4 +2,15 @@
 {% block content %}
     <h3> {{ blog.blogTitle }} </h3>
     <p> {{ blog.blogBio }} </p>
+    {% if blog.user == request.user %}
+        <p><a href= "{% url 'edit_blog' id=blog.id %}"> Edit Blog </a></p>
+        <p><a href="{% url 'create_post' %}"> Create Post </a></p>
+        <br>
+    {% endif %}
+    {% for post in post %}
+        <h3><a href="{% url 'post' id=post.id %}"> {{ post.postTitle }} </a></h3>
+        <p> {{ post.postText }} </p>
+        <p><a href= "{% url 'delete_post' id=post.id%}"> Delete Post </a></p>
+        <p><a href= "{% url 'edit_post' id=post.id %}"> Edit Post </a></p>
+    {% endfor %}
 {% endblock%}

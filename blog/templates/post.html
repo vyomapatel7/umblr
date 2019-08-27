@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<html>
+    <h1> {{ blog.blogTitle }} </h1>
+    <p> {{ blog.blogBio }} </p>
+    <h2> {{ post.postTitle }} </h2>
+    <p> {{ post.postText }} </p>
+{% endblock %}
+</html>

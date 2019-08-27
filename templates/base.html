@@ -5,10 +5,19 @@
 </head>
 <body>
     <li><a href= "{% url 'home' %}"> Home </a></li>
-    <li><a href= "{% url 'about' %}"> About </li>
-    <li><a href= "{% url 'login' %}"> Login </a></li>
-    <li><a href= "{% url 'signup' %}"> Sign up </a></li>
-    <li><a href= "{% url 'myblog' %}"> My Blog </a></li>
+    <li><a href= "{% url 'about' %}"> About </li></a>
+    {% if user.is_authenticated %}
+        <li> Currently logged in as {{ user.username }} </li>
+        <li><a href= "{% url 'logout' %}"> Logout </a></li>
+        {% if user.blog %}
+            <li><a href= "{% url 'myblog' %}"> My Blog </a></li>
+        {% else %}
+            <li><a href= "{% url 'create_blog' %}"> Create Blog </a></li>
+        {% endif %}
+    {% else %}
+        <li><a href= "{% url 'login' %}"> Login </a></li>
+        <li><a href= "{% url 'signup' %}"> Sign up </a></li>
+    {% endif %}
 </body>
 <main>
     {% block content %}

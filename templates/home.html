@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 
 {% block content %}
-Hello
+    <h1> Explore blogs </h1>
+    {% for blog in blogs %}
+        <p><a href="{% url 'blog' id=blog.id %}"> {{ blog.blogTitle }}</a></p>
+    {% endfor %}
 {% endblock %}
