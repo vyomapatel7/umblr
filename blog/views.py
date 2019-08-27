@@ -1,6 +1,7 @@
 from django.shortcuts import render, reverse, redirect 
 from .models import Blog, Post
 from blog.forms import BlogCreateForm, PostCreateForm
+from django.db.models import Q
 
 
 def home(request):
@@ -11,8 +12,10 @@ def home(request):
 
     return render(request, 'home.html', context)
 
+
 def about(request):
     return render(request, 'about.html')
+
 
 def myblog(request):
     blog = Blog.objects.get(user=request.user)
@@ -23,6 +26,7 @@ def myblog(request):
     }
 
     return render(request, 'blog.html', context)
+
 
 def post(request, id):
     post = Post.objects.get(id=id)
@@ -70,6 +74,7 @@ def edit_blog(request, id):
         'blog': blog,
     })
 
+
 def create_post(request):
     print('hi')
     form_class = PostCreateForm
@@ -105,6 +110,7 @@ def delete_post(request, id):
     post.delete()
     return redirect('myblog')
 
+
 def edit_post(request, id):
     post = Post.objects.get(id=id)
     form_class = PostCreateForm
@@ -121,3 +127,21 @@ def edit_post(request, id):
         'post': post,
     })
 
+
+def search(request):
+    if request.method == 'GET':
+        query = request.GET.get('q')
+        submitbutton = request.GET.get('submit')
+        if query is not None:
+            lookups = Q(title_icontains=query) | Q(post_icontains=query)
+            results = Post.objects.filter(lookups).distinct()
+            context = {
+                'results': results,
+                'submitbutton': submitbutton
+            }
+            return render(request, 'search.html', context)
+
+        else:
+            return render(request, 'search.html')
+
+    return render(request, 'search.html')

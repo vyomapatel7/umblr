@@ -4,7 +4,7 @@ from .models import Blog, Post
 class BlogCreateForm(ModelForm):
     class Meta:
         model = Blog
-        fields = ('blogTitle', 'blogBio',)
+        fields = ('blogTitle', 'blogBio', 'blogImage')
 
 class PostCreateForm(ModelForm):
     class Meta:

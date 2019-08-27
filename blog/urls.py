@@ -1,8 +1,11 @@
 from django.urls import path
 from .import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('myblog/', views.myblog, name='myblog'),
+    path('search/', views.search, name='search'),
     path('user/<id>/', views.blog, name='blog'),
     path('post/<id>/', views.post, name='post'),
     path('createpost/', views.create_post, name='create_post'),
@@ -11,3 +14,5 @@ urlpatterns = [
     path('post/delete/<id>/', views.delete_post, name='delete_post'),
     path('post/edit/<id>/', views.edit_post, name='edit_post'),
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
