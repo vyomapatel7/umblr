@@ -51,6 +51,28 @@ class NewVisitorTest(unittest.TestCase):
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
 
+        # After logging in Bob can create a blog by clicking on create blog
+        # Bob can then enter a title and text for his blog and submit it
+        # After submitting the data Bob is redirected to his blog
+        
+        # Bob can edit his blog by clicking on edit blog 
+        # Bob can submit the edits to his blog
+
+        # Bob can delete his blog by clicking on delete
+        # Bob is asked if he is sure he wants to delete his blog
+
+        # Bob can create a post by clicking on create post
+        # Bob can enter a title and text for his post and submit it
+
+        # Bob can edit his post by clicking on edit post 
+        # Bob can submit the edits to his post
+
+        # Bob can delete his post by clicking on delete post
+        # Bob is asked if he is sure he wants to delete his post
+
+        # Bob can view the about page for his blo
+
+
 
 if __name__ == '__main__':
     unittest.main(warnings='ignore')

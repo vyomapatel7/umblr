@@ -17,6 +17,17 @@ def about(request):
     return render(request, 'about.html')
 
 
+def blog(request, id):
+    blog = Blog.objects.get(id=id)
+    post = Post.objects.filter(blog=blog)
+    context = {
+        'blog': blog,
+        'post': post,
+    }
+
+    return render(request, 'blog.html', context)
+
+
 def myblog(request):
     blog = Blog.objects.get(user=request.user)
     post = Post.objects.filter(blog=blog)
@@ -92,17 +103,6 @@ def create_post(request):
     return render(request, 'create_post.html', {
         'form': form,
     })
-
-
-def blog(request, id):
-    blog = Blog.objects.get(id=id)
-    post = Post.objects.filter(blog=blog)
-    context = {
-        'blog': blog,
-        'post': post,
-    }
-
-    return render(request, 'blog.html', context)
 
 
 def delete_post(request, id):
