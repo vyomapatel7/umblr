@@ -31,8 +31,11 @@ class AboutPageTest(TestCase):
         response = self.client.get('/about/')
         self.assertEqual(response.status_code, 200)
 
+    def test_url_resolves_to_about_page_view(self):
+        found = resolve('/about/')
+        self.assertEqual(found.func, about)
+
     def test_about_page_returns_correct_html(self):
-        # about page tests
         request = HttpRequest()
         response = about(request)
         html = response.content.decode('utf8')
