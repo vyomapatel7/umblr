@@ -2,6 +2,7 @@
 
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from django.contrib.auth import get_user_model
 import time
 import unittest
 
@@ -50,6 +51,14 @@ class NewVisitorTest(unittest.TestCase):
         inputbox.send_keys('necklace')
         inputbox.send_keys(Keys.ENTER)
         time.sleep(1)
+
+    def test_login_page_allows_successful_login(self):
+        user = get_user_model().objects.create(username="testuser")
+        user.set_password('12345')
+        user.save()
+
+        login = self.client.login(username="testuser", password="12345")
+        self.assertTrue(login)
 
         # After logging in Bob can create a blog by clicking on create blog
         # Bob can then enter a title and text for his blog and submit it

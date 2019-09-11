@@ -43,16 +43,19 @@ class AboutPageTest(TestCase):
         self.assertEqual(html, expected_html)
 
 
-class LoginPageTest(TestCase):
+# class LoginPageTest(TestCase): ???
 
-    def test_login_page_allows_successful_login(self):
-        user = get_user_model().objects.create(username="testuser")
-        user.set_password('12345')
-        user.save()
+class SignUpPageTest(TestCase):
 
-        login = self.client.login(username="testuser", password="12345")
-        self.assertTrue(login)
+    # does sign up page exist
+    def test_signup_page_status_code(self):
+        response = self.client.get('/users/signup/')
+        self.assertEqual(response.status_code, 200)
 
+    # foes it bring correct view
+    # does it bring correct html
+    # does password fiel dissallow less than 8 words?
+    # does password field disallow only numbers?
 
 class BlogPageTest(TestCase):
 
@@ -75,6 +78,28 @@ class BlogPageTest(TestCase):
         expected_html = render_to_string('blog.html', context={'blog': blog, 'request': request})
         self.assertEqual(html, expected_html)
 
-# blog page tests
-# create/edit/delete blog tests
-# create/edit/delete post tests
+
+# class EditBlogPageTest(self):
+
+    # does  page exist
+    # does it bring correct view
+    # does it bring correct html
+    # does submit redirect to correct page
+    # does it contain correct content check for Blog new title?
+
+
+# class PostPageTest(self):
+
+    # does  page exist
+    # does it bring correct view
+    # does it bring correct html
+    # does it contain correct content post title
+
+
+# class EditPostPageTest(self):
+
+    # does  page exist
+    # does it bring correct view
+    # does it bring correct html
+    # does submit redirect to correct page
+    # does it contain correct content check for post title?
