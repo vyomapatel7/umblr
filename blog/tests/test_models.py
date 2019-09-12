@@ -1,6 +1,6 @@
 from django.test import TestCase
 
-from blog.models import Blog
+from blog.models import Blog, Post
 
 class BlogModelTest(TestCase):
     @classmethod
@@ -28,3 +28,13 @@ class BlogModelTest(TestCase):
         self.assertEquals(max_length, 500)
 
     # how do i test for an image field?
+
+class PostModelTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        Post.objects.create(postTitle='testposttile', postText='testposttext')
+
+    def test_post_title_field(self):
+        post = Post.objects.get(id=1)
+        post_title_field = post._meta.get_field('postTitle').verbose_name
+        self.assertEquals(post_title_field, 'postTitle')
