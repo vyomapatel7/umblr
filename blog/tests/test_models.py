@@ -28,6 +28,7 @@ class BlogModelTest(TestCase):
         self.assertEquals(max_length, 500)
 
     # how do i test for an image field?
+    # whats the difference between equal and equals?
 
 class PostModelTest(TestCase):
     @classmethod
@@ -38,3 +39,8 @@ class PostModelTest(TestCase):
         post = Post.objects.get(id=1)
         post_title_field = post._meta.get_field('postTitle').verbose_name
         self.assertEquals(post_title_field, 'postTitle')
+
+    def test_post_text_field(self):
+        post = Post.objects.get(id=1)
+        post_text_field = post._meta.get_field('postText').verbose_name
+        self.assertEquals(post_text_field, 'postText')
