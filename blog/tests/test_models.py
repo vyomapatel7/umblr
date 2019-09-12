@@ -12,14 +12,19 @@ class BlogModelTest(TestCase):
         blog_title_field = blog._meta.get_field('blogTitle').verbose_name
         self.assertEquals(blog_title_field, 'blogTitle')
 
-    def test_blog_Bio_field(self):
+    def test_blog_bio_field(self):
         blog = Blog.objects.get(id=1)
         blog_bio_field = blog._meta.get_field('blogBio').verbose_name
         self.assertEquals(blog_bio_field, 'blogBio')
 
-    def test_blog_bio_field_max_length(self):
+    def test_blog_title_field_max_length(self):
         blog = Blog.objects.get(id=1)
         max_length = blog._meta.get_field('blogTitle').max_length
         self.assertEquals(max_length, 200)
+
+    def test_blog_bio_field_max_length(self):
+        blog = Blog.objects.get(id=1)
+        max_length = blog._meta.get_field('blogBio').max_length
+        self.assertEquals(max_length, 500)
 
     # how do i test for an image field?
