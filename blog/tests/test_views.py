@@ -1,10 +1,10 @@
 from django.test import TestCase, Client
 from django.contrib.auth import get_user_model
 from django.urls import resolve
-from blog.views import home, about, blog
+from blog.views import home, about, blog, edit_blog
+from users.views import SignUpView
 from django.http import HttpRequest
 from django.template.loader import render_to_string
-from .models import Blog
 
 
 class HomePageTest(TestCase):
@@ -43,7 +43,7 @@ class AboutPageTest(TestCase):
         self.assertEqual(html, expected_html)
 
 
-# class LoginPageTest(TestCase): ???
+# class LoginPageTest(TestCase):put this in unit test or functional tests?
 
 class SignUpPageTest(TestCase):
 
@@ -53,9 +53,29 @@ class SignUpPageTest(TestCase):
         self.assertEqual(response.status_code, 200)
 
     # foes it bring correct view
+    # doesnt work
+    def test_url_resolves_to_signup_page_view(self):
+        found = resolve('/users/signup/')
+        self.assertEqual(found.func, SignUpView)
+
     # does it bring correct html
+    # doesnt work
+    def test_signup_page_returns_correct_html(self):
+        request = HttpRequest()
+        response = SignUpView(request)
+        html = response.content.decode('utf8')
+        expected_html = render_to_string('signup.html')
+        self.assertEqual(html, expected_html)
+
     # does password fiel dissallow less than 8 words?
-    # does password field disallow only numbers?
+    def test_password_field_saves_correct_password(self):
+        user = get_user_model().objects.create(username="testuser")
+        user.set_password('12345')
+        user.save()
+        self.assertEquals(self.user.check_password("password"), True)
+
+    # do we need to test if somehting from django?
+
 
 class BlogPageTest(TestCase):
 
@@ -79,12 +99,30 @@ class BlogPageTest(TestCase):
         self.assertEqual(html, expected_html)
 
 
-# class EditBlogPageTest(self):
+class EditBlogPageTest(TestCase):
 
-    # does  page exist
+    # does page exist
+    def test_edit_blog_page_status_code(self):
+        response = self.client.get('/blog/edit/<id>/')
+        self.assertEqual(response.status_code, 200)
+
     # does it bring correct view
+    def test_url_resolves_to_edit_blog_page_view(self):
+        found = resolve('/blog/edit/<id>/')
+        self.assertEqual(found.func, edit_blog)
+
     # does it bring correct html
+    def test_signup_page_returns_correct_html(self):
+        request = HttpRequest()
+        response = edit_blog(request)
+        html = response.content.decode('utf8')
+        expected_html = render_to_string('edit_blog.html')
+        self.assertEqual(html, expected_html)
+
     # does submit redirect to correct page
+    # def test_edit_blog_submit_button_redirects_to_correct_page(self):
+        # newtitle = 
+        # self.assertEqual(blog.blogTitle, newtitle)
     # does it contain correct content check for Blog new title?
 
 

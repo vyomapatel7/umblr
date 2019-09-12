@@ -82,6 +82,5 @@ class NewVisitorTest(unittest.TestCase):
         # Bob can view the about page for his blo
 
 
-
 if __name__ == '__main__':
     unittest.main(warnings='ignore')
