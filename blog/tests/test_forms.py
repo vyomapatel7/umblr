@@ -11,6 +11,10 @@ class BlogCreateAndEditTest(TestCase):
         form = BlogCreateAndEditForm()
         self.assertTrue(form.fields['blogBio'].label == 'BlogBio')
 
+    def test_blog_create_and_edit_form_image_field_label(self):
+        form = BlogCreateAndEditForm()
+        self.assertTrue(form.fields['blogImage'].label == 'BlogImage')
+
     # How to test image part of form?
 
 
