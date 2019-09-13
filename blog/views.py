@@ -1,6 +1,6 @@
 from django.shortcuts import render, reverse, redirect 
 from .models import Blog, Post
-from blog.forms import BlogCreateForm, PostCreateForm
+from blog.forms import BlogCreateAndEditForm, PostCreateAndEditForm
 from django.db.models import Q
 
 
@@ -52,7 +52,7 @@ def post(request, id):
 
 def create_blog(request):
     blog = None
-    form_class = BlogCreateForm
+    form_class = BlogCreateAndEditForm
     if request.method == 'POST':
         form = form_class(request.POST, request.FILES, instance=blog)
         if form.is_valid():
@@ -71,7 +71,7 @@ def create_blog(request):
 
 def edit_blog(request, id):
     blog = Blog.objects.get(id=id)
-    form_class = BlogCreateForm
+    form_class = BlogCreateAndEditForm
     if request.method == "POST":
         form = form_class(request.POST, request.FILES, instance=blog)
         if form.is_valid():
@@ -88,7 +88,7 @@ def edit_blog(request, id):
 
 def create_post(request):
     print('hi')
-    form_class = PostCreateForm
+    form_class = PostCreateAndEditForm
     if request.method == "POST":
         form = form_class(request.POST, request.FILES)
         if form.is_valid():
@@ -113,7 +113,7 @@ def delete_post(request, id):
 
 def edit_post(request, id):
     post = Post.objects.get(id=id)
-    form_class = PostCreateForm
+    form_class = PostCreateAndEditForm
     if request.method == 'POST':
         form = form_class(request.POST, request.FILES, instance=post)
         if form.is_valid():
