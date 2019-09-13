@@ -24,3 +24,11 @@ class Post(models.Model):
 
     def __str__(self):
         return f"{self.postTitle}"
+
+
+class Connection(models.Model):
+    beingFollowed = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    following = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.beingFollowed.blog.blogTitle
