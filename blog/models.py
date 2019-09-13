@@ -27,8 +27,8 @@ class Post(models.Model):
 
 
 class Connection(models.Model):
-    beingFollowed = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    following = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    beingFollowed = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="beingFollowed")
+    following = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="following")
 
     def __str__(self):
         return self.beingFollowed.blog.blogTitle
