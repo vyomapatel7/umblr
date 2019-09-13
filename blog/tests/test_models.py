@@ -44,3 +44,13 @@ class PostModelTest(TestCase):
         post = Post.objects.get(id=1)
         post_text_field = post._meta.get_field('postText').verbose_name
         self.assertEquals(post_text_field, 'postText')
+
+    def test_post_title_field_max_length(self):
+        blog = Post.objects.get(id=1)
+        max_length = blog._meta.get_field('postTitle').max_length
+        self.assertEquals(max_length, 200)
+
+    def test_post_text_field_max_length(self):
+        blog = Post.objects.get(id=1)
+        max_length = blog._meta.get_field('postText').max_length
+        self.assertEquals(max_length, 1000)
