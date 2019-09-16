@@ -8,6 +8,8 @@
         <p><a href= "{% url 'edit_blog' id=blog.id %}"> Edit Blog </a></p>
         <p><a href="{% url 'create_post' %}"> Create Post </a></p>
         <br>
+        {% else %}
+            <p><a href= "{% url 'follow' id=blog.id %}"> Follow </a></p>
     {% endif %}
     {% for post in post %}
         <h3><a href="{% url 'post' id=post.id %}"> {{ post.postTitle }} </a></h3>

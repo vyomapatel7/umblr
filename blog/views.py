@@ -1,5 +1,6 @@
 from django.shortcuts import render, reverse, redirect 
-from .models import Blog, Post
+from .models import Blog, Post, Connection
+from django.contrib.auth import get_user_model
 from blog.forms import BlogCreateAndEditForm, PostCreateAndEditForm
 from django.db.models import Q
 
@@ -145,3 +146,18 @@ def search(request):
             return render(request, 'search.html')
 
     return render(request, 'search.html')
+
+
+def follow(request, id):
+    following = request.user
+    beingfollowed = get_user_model().objects.get(id=id)
+    Connection.objects.create(following=following, beingFollowed=beingfollowed)
+    return redirect('following')
+
+
+def following(request):
+    beingfollowed = Connection.objects.filter(following=request.user)
+    context = {
+        'beingfollowed': beingfollowed,
+    }
+    return render(request, 'beingFollowed.html', context)

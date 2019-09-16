@@ -13,6 +13,8 @@
         <li><a href= "{% url 'logout' %}"> Logout </a></li>
         {% if user.blog %}
             <li><a href= "{% url 'myblog' %}"> My Blog </a></li>
+            <li><a href= "{% url 'following' %}"> Following </a></li>
+            <li><a href= "{% url 'followers' %}"> Followers </a></li>
         {% else %}
             <li><a href= "{% url 'create_blog' %}"> Create Blog </a></li>
         {% endif %}
