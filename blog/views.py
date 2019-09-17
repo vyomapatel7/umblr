@@ -1,8 +1,9 @@
-from django.shortcuts import render, reverse, redirect 
+from django.shortcuts import render, reverse, redirect, HttpResponse
 from .models import Blog, Post, Connection
 from django.contrib.auth import get_user_model
 from blog.forms import BlogCreateAndEditForm, PostCreateAndEditForm
 from django.db.models import Q
+from django.contrib import messages
 
 
 def home(request):
@@ -107,9 +108,12 @@ def create_post(request):
 
 
 def delete_post(request, id):
-    post = Post.objects.get(id=id)
-    post.delete()
-    return redirect('myblog')
+    if request.method == 'POST':
+        post = Post.objects.get(id=id)
+        post.delete()
+        messages.success(request, "Post successfully deleted!")
+        return redirect('myblog')
+    return render(request, 'delete_post_confirm.html')
 
 
 def edit_post(request, id):
@@ -161,3 +165,11 @@ def following(request):
         'beingfollowed': beingfollowed,
     }
     return render(request, 'beingFollowed.html', context)
+
+
+def followers(request):
+    followers = Connection.objects.filter(beingFollowed=request.user)
+    context = {
+        'followers': followers,
+    }
+    return render(request, 'followers.html', context)
