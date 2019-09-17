@@ -6,24 +6,26 @@
   <link rel="stylesheet" href="{% static 'site.css' %}">
   <h1> Umblr </h1>
 </head>
-<body class="nav">
-    <li><a href= "{% url 'home' %}"> Home </a></li>
-    <li><a href= "{% url 'about' %}"> About </li></a>
-    {% if user.is_authenticated %}
-    <li><a href= "{% url 'search' %}"> Search </li></a>
-        <li> Currently logged in as {{ user.username }} </li>
-        <li><a href= "{% url 'logout' %}"> Logout </a></li>
-        {% if user.blog %}
-            <li><a href= "{% url 'myblog' %}"> My Blog </a></li>
-            <li><a href= "{% url 'following' %}"> Following </a></li>
-            <li><a href= "{% url 'followers' %}"> Followers </a></li>
+<body>
+    <ul class="nav"> 
+        <li><a href= "{% url 'home' %}"> Home </a></li>
+        <li><a href= "{% url 'about' %}"> About </li></a>
+        {% if user.is_authenticated %}
+        <li><a href= "{% url 'search' %}"> Search </li></a>
+            <li> Currently logged in as {{ user.username }} </li>
+            <li><a href= "{% url 'logout' %}"> Logout </a></li>
+            {% if user.blog %}
+                <li><a href= "{% url 'myblog' %}"> My Blog </a></li>
+                <li><a href= "{% url 'following' %}"> Following </a></li>
+                <li><a href= "{% url 'followers' %}"> Followers </a></li>
+            {% else %}
+                <li><a href= "{% url 'create_blog' %}"> Create Blog </a></li>
+            {% endif %}
         {% else %}
-            <li><a href= "{% url 'create_blog' %}"> Create Blog </a></li>
+            <li><a href= "{% url 'login' %}"> Login </a></li>
+            <li id="signup"><a href= "{% url 'signup' %}"> Sign up </a></li>
         {% endif %}
-    {% else %}
-        <li><a href= "{% url 'login' %}"> Login </a></li>
-        <div id="signup"><a href= "{% url 'signup' %}"> Sign up </a></div>
-    {% endif %}
+    </ul>
 </body>
 <main>
     {% block content %}
