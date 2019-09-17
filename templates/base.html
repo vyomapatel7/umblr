@@ -1,8 +1,10 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
 <title> Umblr </title>
 <head>
-    <h1> Umblr </h1>
+  <link rel="stylesheet" href="{% static 'site.css' %}">
+  <h1> Umblr </h1>
 </head>
 <body class="nav">
     <li><a href= "{% url 'home' %}"> Home </a></li>

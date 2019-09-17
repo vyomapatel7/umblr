@@ -88,11 +88,21 @@ def edit_blog(request, id):
     })
 
 
+def delete_blog(request, id):
+    if request.method == 'POST':
+        blog = Blog.objects.get(id=id)
+        blog.delete()
+        messages.success(request, "Blog successfully deleted!")
+        return redirect('home')
+        messages.success(request, "Blog successfully deleted!")
+    return render(request, 'delete_blog_confirm.html')
+
+
 def create_post(request):
-    print('hi')
+    post = None
     form_class = PostCreateAndEditForm
     if request.method == "POST":
-        form = form_class(request.POST, request.FILES)
+        form = form_class(request.POST, request.FILES, instance=post)
         if form.is_valid():
             post = form.save(commit=False)
             my_blog = Blog.objects.get(user=request.user)

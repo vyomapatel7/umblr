@@ -1,12 +1,20 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
     <h3> {{ blog.blogTitle }} </h3>
     <p> {{ blog.blogBio }} </p>
     <p> <img src="{{ blog.blogImage.url }}" style= "width:100px;"/> </p>
     {% if blog.user == request.user %}
         <p><a href= "{% url 'edit_blog' id=blog.id %}"> Edit Blog </a></p>
         <p><a href="{% url 'create_post' %}"> Create Post </a></p>
+        <p><a href= "{% url 'delete_blog' id=blog.id%}"> Delete Blog </a></p>
         <br>
         {% else %}
             <p><a href= "{% url 'follow' id=blog.id %}"> Follow </a></p>
