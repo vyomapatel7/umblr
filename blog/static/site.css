@@ -28,7 +28,6 @@ h1{
 
 .blogs{
     display: inline-block;
-    float: center;
 }
 
 .blogs img{ 
@@ -44,4 +43,11 @@ h1{
 .search,
 .login{
     text-align: center;
+}
+
+.allblogs{
+    margin-right: 100px;
+    margin-left: 100px;
+    display: inline-block;
+    width: 85%;
 }

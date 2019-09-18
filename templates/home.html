@@ -2,10 +2,12 @@
 
 {% block content %}
     <h1> Explore blogs </h1>
+    <div class="allblogs">
     {% for blog in blogs %}
         <div class="blogs">
             <p><a href="{% url 'blog' id=blog.id %}"> {{ blog.blogTitle }}</a></p>
             <img src="{{ blog.blogImage.url }}"/>
         </div>
     {% endfor %}
+    </div>
 {% endblock %}
