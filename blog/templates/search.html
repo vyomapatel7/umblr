@@ -13,12 +13,11 @@
         {% for result in results %}
 
             <a href="{% url 'post' id=result.id %}"> {{result.postTitle}}  </a>
-            <br/>
-
+            
         {% endfor %}
     {% else %}
         No search results for this query
     {% endif %}
-{% endif %}
+    {% endif %}
 
 {% endblock content %}

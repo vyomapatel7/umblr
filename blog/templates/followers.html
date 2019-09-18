@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-        <h3> Following </h3>
+        <h1> Followers </h1>
         {% for connection in followers %}
                 <li> {{ connection.following.blog.blogTitle }} </a> </li>
         {% endfor %}

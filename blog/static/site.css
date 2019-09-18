@@ -40,3 +40,8 @@ h1{
 .blogs a{
     text-overflow: ellipsis;
 }
+
+.search,
+.login{
+    text-align: center;
+}
