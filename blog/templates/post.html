@@ -2,13 +2,35 @@
 {% load static %}
 {% block content %}
 <html>
-    <h1> {{ blog.blogTitle }} </h1>
-    <p> {{ blog.blogBio }} </p>
-    <h2> {{ post.postTitle }} </h2>
-    <p> {{ post.postText }} </p>
-    {% if request.user == blog.user %}
-            <p><a href= "{% url 'delete_post' id=post.id%}"> Delete Post </a></p>
-            <p><a href= "{% url 'edit_post' id=post.id %}"> Edit Post </a></p>
-        {% endif %}
+    <div class="bloginfo">
+        <div class="blogtext">
+            <h3> {{ blog.blogTitle }} </h3>
+            <p> {{ blog.blogBio }} </p>
+        </div>
+        <div class="blogimage">
+            <img src="{{ blog.blogImage.url }}" />
+        </div>
+        <div class="blogactions">
+            {% if blog.user == request.user %}
+                <p><a href= "{% url 'edit_blog' id=blog.id %}"> Edit Blog </a></p>
+                <p><a href="{% url 'create_post' %}"> Create Post </a></p>
+                <p><a href= "{% url 'delete_blog' id=blog.id%}"> Delete Blog </a></p>
+                <br>
+                {% else %}
+                    <p><a href= "{% url 'follow' id=blog.id %}"> Follow </a></p>
+            {% endif %}
+        </div>
+    </div>
+    <div class="posts">
+        
+            <h3><a href="{% url 'post' id=post.id %}"> {{ post.postTitle }} </a></h3>
+            <p> {{ post.postText }} </p>
+            <p> <img src="{{ post.postImage.url }}" style="width:100px;"/></p>
+            {% if request.user == blog.user %}
+                <p><a href= "{% url 'delete_post' id=post.id%}"> Delete Post </a></p>
+                <p><a href= "{% url 'edit_post' id=post.id %}"> Edit Post </a></p>
+            {% endif %}
+       
+    </div>
 {% endblock %}
 </html>

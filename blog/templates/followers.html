@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
         <h1> Followers </h1>
-        {% for connection in followers %}
-                <li> {{ connection.following.blog.blogTitle }} </a> </li>
-        {% endfor %}
+        <div class="followers">
+            {% for connection in followers %}
+                    <p> {{ connection.following.blog.blogTitle }} <p>
+            {% endfor %}
+        </div>
 {% endblock%}

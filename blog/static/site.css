@@ -1,3 +1,10 @@
+.title{
+    text-align: center;
+    font-size: 50px;
+    padding-top: 20px;
+    font-family: 'Alfa Slab One', cursive, Helvetica;
+}
+
 body{
     background-color:#f5f5f5;
     padding-left: 0px;
@@ -41,7 +48,9 @@ h1{
 }
 
 .search,
-.login{
+.login,
+.following,
+.followers{
     text-align: center;
 }
 
@@ -50,4 +59,48 @@ h1{
     margin-left: 100px;
     display: inline-block;
     width: 85%;
+}
+
+.blogimage img{
+    height: 200px; 
+    width: 200px; 
+    object-fit: cover;
+    padding-top: 0.5%;
+    padding-left: 0.5%;
+}
+
+.blogactions{
+    font-size: 15px;
+    position: absolute;
+    right:0px;
+    bottom: 0px;
+    top: 0px;
+    padding-right: 1%;
+}
+
+.blogtext{
+    padding-top: 0.5%;
+    padding-right: 2%;
+    padding-left: 2%;
+    display: inline-block;
+    position: absolute;
+    left: 200px;
+    top: 0px;
+    bottom:0px;
+}
+
+.bloginfo{
+    background-color: white;
+    margin-right: 20%;
+    margin-left: 20%;
+    margin-top: 5%;
+    position: relative;
+    -moz-box-shadow: 3px 3px 5px 6px #ccc;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow: 3px 3px 5px 6px #ccc;
+}
+
+.posts{
+    margin-right: 20%;
+    margin-left: 20%;
 }
