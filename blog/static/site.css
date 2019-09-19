@@ -33,6 +33,10 @@ h1{
     padding-right: 50px;
 }
 
+.about_text{
+    padding: 50px;
+}
+
 .blogs{
     display: inline-block;
 }
@@ -103,4 +107,35 @@ h1{
 .posts{
     margin-right: 20%;
     margin-left: 20%;
+    position: relative;
+    background-color: white;
+    margin-bottom: 10%;
+}
+
+.postimage img{
+    height: 150px; 
+    width: 150px; 
+    object-fit: cover;
+    padding-top: 0.5%;
+    padding-left: 0.5%;
+}
+
+.postactions{
+    font-size: 15px;
+    position: absolute;
+    right:0px;
+    bottom: 0px;
+    top: 0px;
+    padding-right: 1%;
+}
+
+.posttitleandtext{
+    padding-top: 0.5%;
+    padding-right: 2%;
+    padding-left: 2%;
+    display: inline-block;
+    position: absolute;
+    left: 200px;
+    top: 0px;
+    bottom:0px;
 }

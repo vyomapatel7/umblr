@@ -28,14 +28,20 @@
         </div>
     </div>
     <div class="posts">
-        {% for post in post %}
-            <h3><a href="{% url 'post' id=post.id %}"> {{ post.postTitle }} </a></h3>
-            <p> {{ post.postText }} </p>
-            <p> <img src="{{ post.postImage.url }}" style="width:100px;"/></p>
+        <div class="posttitleandtext">
+            {% for post in post %} 
+                <h3><a href="{% url 'post' id=post.id %}"> {{ post.postTitle }} </a></h3>
+                <p> {{ post.postText }} </p>
+        </div>
+        <div class="postimage">
+            <p> <img src="{{ post.postImage.url }}"/></p>
+        </div>
+        <div class="postactions">
             {% if request.user == blog.user %}
                 <p><a href= "{% url 'delete_post' id=post.id%}"> Delete Post </a></p>
                 <p><a href= "{% url 'edit_post' id=post.id %}"> Edit Post </a></p>
             {% endif %}
+        </div>
         {% endfor %}
     </div>
 {% endblock%}
