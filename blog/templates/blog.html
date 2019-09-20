@@ -19,29 +19,29 @@
         <div class="blogactions">
             {% if blog.user == request.user %}
                 <p><a href= "{% url 'edit_blog' id=blog.id %}"> Edit Blog </a></p>
-                <p><a href="{% url 'create_post' %}"> Create Post </a></p>
                 <p><a href= "{% url 'delete_blog' id=blog.id%}"> Delete Blog </a></p>
+                <p><a href="{% url 'create_post' %}"> Create Post </a></p>
                 <br>
                 {% else %}
                     <p><a href= "{% url 'follow' id=blog.id %}"> Follow </a></p>
             {% endif %}
         </div>
     </div>
-    <div class="posts">
-        <div class="posttitleandtext">
             {% for post in post %} 
-                <h3><a href="{% url 'post' id=post.id %}"> {{ post.postTitle }} </a></h3>
-                <p> {{ post.postText }} </p>
-        </div>
-        <div class="postimage">
-            <p> <img src="{{ post.postImage.url }}"/></p>
-        </div>
-        <div class="postactions">
-            {% if request.user == blog.user %}
-                <p><a href= "{% url 'delete_post' id=post.id%}"> Delete Post </a></p>
-                <p><a href= "{% url 'edit_post' id=post.id %}"> Edit Post </a></p>
-            {% endif %}
-        </div>
-        {% endfor %}
-    </div>
+                <div class="posts">
+                    <div class="posttitleandtext">
+                        <h3><a href="{% url 'post' id=post.id %}"> {{ post.postTitle }} </a></h3>
+                        <p> {{ post.postText }} </p>
+                    </div>
+                    <div class="postimage">
+                        <p> <img src="{{ post.postImage.url }}"/></p>
+                    </div>
+                    <div class="postactions">
+                        {% if request.user == blog.user %}
+                            <p><a href= "{% url 'edit_post' id=post.id %}"> Edit Post </a></p>
+                            <p><a href= "{% url 'delete_post' id=post.id%}"> Delete Post </a></p>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
 {% endblock%}

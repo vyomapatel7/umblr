@@ -109,7 +109,7 @@ h1{
     margin-left: 20%;
     position: relative;
     background-color: white;
-    margin-bottom: 10%;
+    margin-bottom: 0%;
 }
 
 .postimage img{
@@ -133,9 +133,13 @@ h1{
     padding-top: 0.5%;
     padding-right: 2%;
     padding-left: 2%;
+    margin-bottom: 5%;
     display: inline-block;
     position: absolute;
-    left: 200px;
+    left: 170px;
     top: 0px;
     bottom:0px;
+    overflow: hidden;
+    max-height: 150px;
+    max-width: 400px;
 }
