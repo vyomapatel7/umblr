@@ -3,7 +3,7 @@
         <h1> Following </h1>
         <div class="following">
             {% for connection in beingfollowed %}
-                    <p> {{ connection.beingFollowed.blog.blogTitle }} </p>
+                    <p><a href="{% url 'blog' id=connection.beingFollowed.blog.id %}"> {{ connection.beingFollowed.blog.blogTitle }} </p>
             {% endfor %}
         </div>
 {% endblock%}

@@ -54,13 +54,14 @@ h1{
 .search,
 .login,
 .following,
-.followers{
+.followers,
+.results{
     text-align: center;
 }
 
 .allblogs{
-    margin-right: 100px;
-    margin-left: 100px;
+    margin-right: 10%;
+    margin-left: 10%;
     display: inline-block;
     width: 85%;
 }

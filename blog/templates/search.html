@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+
     <h1> Search </h1>
     <form class="search" action="{% url 'search' %}" method="GET" value="{{request.GET.q}}">
     <input type="text" name="q" value="{{request.GET.q}}" placeholder="type here">
@@ -7,17 +8,32 @@
     </form>
 
     {% if submitbutton == 'Search' and request.GET.q != '' %}
-    {% if results %}
-        <h1>Results for <b>{{ request.GET.q }}</b></h1>
-        <br/><br/>
-        {% for result in results %}
 
-            <a href="{% url 'post' id=result.id %}"> {{result.postTitle}}  </a>
-            
-        {% endfor %}
-    {% else %}
-        No search results for this query
-    {% endif %}
+    <h1>Results for <b>{{ request.GET.q }}</b></h1>
+
+    <div class="results">
+        {% if postresults %}
+                <p> Posts </p>
+                {% for postresults in postresults %}
+                    <li><a href="{% url 'post' id=postresults.id %}"> {{postresults.postTitle}}  </a></li>
+                {% endfor %}
+        {% else %}
+            <p> Posts </p>
+            No search results in Posts for this query
+        {% endif %}
+        <br><br>
+        {% if blogresults %}
+            <p> Blogs </p>
+            {% for blogresults in blogresults %}
+                <li><a href="{% url 'blog' id=blogresults.id %}"> {{blogresults.blogTitle}}  </a></li>
+            {% endfor %}
+        {% else %}
+            <p> Blogs </p>
+            No search results in Blogs for this query
+        {% endif %}
+        <br><br>
+        </div>
+
     {% endif %}
 
 {% endblock content %}

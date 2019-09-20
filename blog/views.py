@@ -149,9 +149,12 @@ def search(request):
         submitbutton = request.GET.get('submit')
         if query is not None:
             lookups = Q(postTitle__icontains=query) | Q(postText__icontains=query)
-            results = Post.objects.filter(lookups).distinct()
+            postresults = Post.objects.filter(lookups).distinct()
+            bloglookups = Q(blogTitle__icontains=query)
+            blogresults = Blog.objects.filter(bloglookups).distinct()
             context = {
-                'results': results,
+                'postresults': postresults,
+                'blogresults': blogresults,
                 'submitbutton': submitbutton
             }
             return render(request, 'search.html', context)
