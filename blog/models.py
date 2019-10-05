@@ -1,6 +1,7 @@
 from django.db import models
 from django.conf import settings
 from django.urls import reverse
+from users.models import CustomUser
 
 
 class Blog(models.Model):
@@ -31,8 +32,8 @@ class Post(models.Model):
 
 
 class Connection(models.Model):
-    beingFollowed = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="beingFollowed")
-    following = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="following")
+    beingFollowed = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="beingFollowed")
+    following = models.ForeignKey(CustomUser, on_delete=models.CASCADE, related_name="following")
 
     def __str__(self):
         return self.beingFollowed.blog.blogTitle

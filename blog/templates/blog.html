@@ -23,7 +23,7 @@
                 <p><a href="{% url 'create_post' %}"> Create Post </a></p>
                 <br>
                 {% else %}
-                    <p><a href= "{% url 'follow' id=blog.id %}"> Follow </a></p>
+                    <p><a href= "{% url 'follow' id=blog.user.id %}"> Follow </a></p>
             {% endif %}
         </div>
     </div>

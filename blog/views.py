@@ -168,10 +168,15 @@ def search(request):
 def follow(request, id):
     following = request.user
     beingfollowed = get_user_model().objects.get(id=id)
+    print('User id')
+    print(id)
+    print(beingfollowed.id)
     if Connection.objects.filter(following=request.user).filter(beingFollowed=id).exists():
         return redirect('following')
     else:
-        Connection.objects.create(following=following, beingFollowed=beingfollowed)
+        Connection.objects.create(following=request.user, beingFollowed=beingfollowed)
+        print(beingfollowed)
+        print(beingfollowed.id)
     return redirect('following')
 
 
